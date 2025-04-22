@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { fetchSeatsAPI } from "@/utils/api/getSeats";
-import resetSeatsAPI from "@/utils/api/postResetSeats";
+import { CONSTANTS } from "@/utils/config/app-config";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Seat {
   id: number;
@@ -46,7 +46,7 @@ export default function SeatBookingPage() {
     if (!confirmReset) return;
 
     try {
-      await axios.post("http://localhost:5000/api/seats/reset");
+      await axios.post(`${CONSTANTS?.API_BASE_URL}/api/seats/reset`);
 
       toast.success("All bookings have been reset");
       loadSeats(); // Refresh seat map
@@ -64,7 +64,7 @@ export default function SeatBookingPage() {
   const handleBooking = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/seats/book",
+        `${CONSTANTS?.API_BASE_URL}/api/seats/book`,
         { seats: selectedSeats },
         getAuthHeaders()
       );

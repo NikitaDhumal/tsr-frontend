@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { CONSTANTS } from "@/utils/config/app-config";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function SignupPage() {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/auth/signup", {
+      await axios.post(`${CONSTANTS?.API_BASE_URL}/api/auth/signup`, {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         password,

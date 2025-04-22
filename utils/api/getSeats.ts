@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify"; // or any toast library
+import { CONSTANTS } from "../config/app-config";
 
 export const fetchSeatsAPI = async () => {
   const getAuthHeaders = () => ({
@@ -9,7 +10,7 @@ export const fetchSeatsAPI = async () => {
   });
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/seats",
+      `${CONSTANTS?.API_BASE_URL}/api/seats`,
       getAuthHeaders()
     );
     return response.data;

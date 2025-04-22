@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { fetchSeatsAPI } from "./getSeats";
+import { CONSTANTS } from "../config/app-config";
 
 const resetSeatsAPI = async () => {
   const confirmReset = window.confirm(
@@ -9,7 +10,7 @@ const resetSeatsAPI = async () => {
   if (!confirmReset) return;
 
   try {
-    await axios.post("http://localhost:5000/api/seats/reset");
+    await axios.post(`${CONSTANTS?.API_BASE_URL}/api/seats/reset`);
 
     toast.success("All bookings have been reset");
     fetchSeatsAPI(); // Refresh seat map
