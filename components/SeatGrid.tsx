@@ -51,7 +51,7 @@ export default function SeatBookingPage() {
       toast.success("All bookings have been reset");
       loadSeats(); // Refresh seat map
       setSelectedSeats([]); // Clear selected seats
-    } catch (error: any) {
+    } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message || "Reset failed");
       } else {
@@ -71,7 +71,7 @@ export default function SeatBookingPage() {
       toast.success("Booking successful!");
       setSelectedSeats([]);
       loadSeats();
-    } catch (err) {
+    } catch {
       toast.error("Booking failed!");
     }
   };
